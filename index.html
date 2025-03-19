@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联邦学习模拟器</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <!-- 用户栏 -->
+    <div class="user-panel">
+      <div class="user-info">
+        <div class="username">用户名</div>
+        <div class="logout">
+          <a href="login.html">退出登录</a>
+        </div>
+      </div>
+    </div>
+    <!-- 配置面板 -->
+    <div class="config-panel">
+        <h2>联邦学习配置</h2>
+        <!-- 修改后的index.html表单部分 -->
+        <form id="config-form">
+            <!-- 训练模式 -->
+            <div class="form-group">
+                <label>训练模式：
+                    <select id="mode" required>
+                        <option value="fedavg">传统联邦学习 (FedAvg)</option>
+                        <option value="hierarchical">区块链与分层式混合聚合</option>
+                    </select>
+                </label>
+                <div id="hierarchical-group" class="sub-option">
+                    <label>分组数量：
+                        <input type="number" id="hierarchical_groups" min="2" value="2" required>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 基本参数 -->
+            <div class="form-group">
+                <label>参与者数量：
+                    <input type="number" id="clients" min="1" value="10" required>
+                </label>
+                <br>
+                <label>全局训练轮次：
+                    <input type="number" id="rounds" min="1" value="20" required>
+                </label>
+                <br>
+                <label>本地训练轮次：
+                    <input type="number" id="local_epochs" min="1" value="3" required>
+                </label>
+            </div>
+
+            <!-- 数据集选择 -->
+            <div class="form-group">
+                <label>数据集：
+                    <select id="dataset" required>
+                        <option value="mnist">MNIST</option>
+                        <option value="cifar10">CIFAR-10</option>
+                        <option value="fashion">Fashion-MNIST</option>
+                    </select>
+                </label>
+            </div>
+
+            <!-- 隐私保护 -->
+            <div class="form-group">
+                <label class="checkbox">
+                    <input type="checkbox" id="dp"> 启用差分隐私
+                </label>
+                <div id="dp-params" class="sub-option">
+                    <label>ε (隐私预算)：
+                        <input type="number" id="epsilon" min="0.1" step="0.1" value="1.0">
+                    </label>
+                    <br>
+                    <label>δ (失败概率)：
+                        <input type="number" id="delta" min="0" step="1e-5" value="0.00001">
+                    </label>
+                </div>
+            </div>
+
+            <!-- 加密设置 -->
+            <div class="form-group">
+                <label>加密算法：
+                    <select id="encrypt">
+                        <option value="none">无加密</option>
+                        <option value="paillier">Improved Paillier</option>
+                        <option value="ckks">dMK-CKKS</option>
+                    </select>
+                </label>
+            </div>
+
+            <!-- 模型配置 -->
+            <div class="form-group">
+                <label>模型配置方式：
+                    <select id="model-type">
+                        <option value="preset">预设模型</option>
+                        <option value="custom">自定义模型</option>
+                    </select>
+                </label>
+                <label>模型名称：
+                    <input type="text" id="model-name"
+                        placeholder="请输入模型名称"
+                        value="未命名模型">
+                </label>
+                <div id="preset-model" class="sub-option">
+                    <label>模型大小：
+                        <select id="model_size">
+                            <option value="small">小型模型 (约50K参数)</option>
+                            <option value="medium">中型模型 (约1.2M参数)</option>
+                            <option value="large">大型模型 (约5.8M参数)</option>
+                        </select>
+                    </label>
+                </div>
+                <div id="custom-model" class="sub-option">
+                    <label>上传模型配置：
+                        <input type="file" id="model_config" accept=".json">
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit">开始训练</button>
+        </form>
+    </div>
+
+    <!-- 监控面板 -->
+    <div class="monitoring-panel">
+        <div class="chart-container">
+            <h3>实时训练指标</h3>
+            <div class="training-status" id="training-status"> <!-- 新增状态栏 -->
+                正在训练：<span id="current-model">未开始</span>
+            </div>
+            <canvas id="metrics-chart"></canvas>
+        </div>
+
+        <div class="model-list">
+            <h3>历史模型</h3>
+            <button id="validate-model-btn" class="validate-btn">验证模型效果</button>
+            <div id="model-table"></div>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+/* 调整主容器位置 */
+.container {
+  display: grid;
+  grid-template-columns: 300px 1fr;  /* 左侧固定宽度，右侧自适应 */
+  grid-template-rows: auto 1fr;      /* 用户栏高度自适应，下方内容填充剩余空间 */
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 用户栏 */
+.user-panel {
+  grid-column: 1 / 2;  /* 位于第一列 */
+  grid-row: 1 / 2;     /* 位于第一行 */
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.username {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.logout a {
+  color: #ff4d4d;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.logout a:hover {
+  text-decoration: underline;
+}
+
+.config-panel {
+  grid-column: 1 / 2;  /* 位于第一列 */
+  grid-row: 2 / 3;     /* 位于第二行 */
+
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#model-name {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+#model-name::placeholder {
+  color: #999;
+}
+
+.monitoring-panel {
+  grid-column: 2 / 3;  /* 位于第二列 */
+  grid-row: 1 / 3;     /* 跨两行 */
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.training-status {
+  margin: 10px 0;
+  padding: 8px 15px;
+  background: #e3f2fd;
+  border-left: 4px solid #2196f3;
+  border-radius: 4px;
+  color: #1976d2;
+  font-size: 14px;
+}
+
+.training-status span {
+  font-weight: bold;
+  color: #1565c0;
+}
+
+.chart-container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#metrics-chart {
+  width: 100%;
+  height: 400px;
+}
+
+.model-list {
+  background: white;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#model-table {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.model-item {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-group {
+  margin: 12px 0;  /* 增加上下间距 */
+  padding: 5px;    /* 增加内边距 */
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #f8f9fa;
+}
+
+/* 表单元素间距 */
+.form-group label {
+  display: block;
+  margin: 10px 0;  /* 增加标签间距 */
+  color: #495057;
+}
+
+/* 输入控件统一间距 */
+input[type="number"],
+input[type="file"],
+select {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0 5px 0;  /* 上边距6px 下边距12px */
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* 复选框特殊处理 */
+.checkbox {
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sub-option {
+  margin-top: 5px;
+  padding-left: 20px;
+  border-left: 3px solid #007bff;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.sub-option.active {
+  max-height: 200px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+input[type="number"] {
+  width: 120px;
+  padding: 5px;
+}
+
+select {
+  min-width: 200px;
+  padding: 5px;
+}
+
+input[type="file"] {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* 按钮间距 */
+button[type="submit"] {
+  margin-top: 5px;
+  padding: 6px 12px;
+}
+
+/* 跳转到验证界面按钮 */
+.validate-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* 验证界面历史模型列表样式 */
+#model-list {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-top: 10px;
+}
+
+.model-item {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  word-wrap: break-word;  /* 长模型名换行 */
+}
+
+.model-item.selected {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+#selected-model-info {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* 样本展示窗口样式 */
+#sample-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.sample-item {
+  width: 240px;  /* 增大展示区域 */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  text-align: center;
+}
+
+.sample-item img {
+  max-width: 100%;
+  max-height: 240px;  /* 增大图片显示大小 */
+  border-radius: 4px;
+}
+
+.sample-item p {
+  margin: 5px 0 0;
+  font-size: 12px;
+  color: #666;
+  word-wrap: break-word;  /* 长文件名换行 */
+}
+
+/* 验证结果区域 */
+.validation-section {
+  margin-top: 10px;
+}
+
+#result-list {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap; /* 允许换行 */
+  gap: 10px; /* 设置元素之间的间距 */
+}
+
+.result-item {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  flex: 1 1 calc(33.333% - 20px); /* 每个元素占33.333%的宽度，减去间距 */
+  max-width: calc(33.333% - 20px); /* 限制最大宽度，防止拉伸 */
+  box-sizing: border-box; /* 确保padding和border不会影响宽度计算 */
+}
+
+.result-item h4 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.result-item p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.result-item .details {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+
+.result-item .details p {
+  margin: 3px 0;
+  font-size: 12px;
+  color: #888;
+}

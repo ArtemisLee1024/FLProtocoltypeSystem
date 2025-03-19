@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>验证模型效果</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 用户栏 -->
+        <!-- 用户栏 -->
+    <div class="user-panel">
+      <div class="user-info">
+        <div class="username">测试用户</div>
+        <div class="logout">
+          <a href="login.html">退出登录</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 选择历史模型 -->
+    <div class="config-panel">
+      <h2>选择模型进行验证</h2>
+      <div id="selected-model-info">已选择模型：<span id="selected-model-name">无</span></div>
+      <div id="model-list">
+        <!-- 动态加载历史模型 -->
+      </div>
+    </div>
+
+    <!-- 上传样本及验证结果 -->
+    <div class="monitoring-panel">
+      <div class="upload-section">
+        <h3>上传验证样本</h3>
+        <input type="file" id="sample-upload" multiple>
+        <div id="sample-preview"></div>
+      </div>
+
+      <div class="validation-section">
+        <button id="validate-btn" class="validate-btn">开始验证</button>
+        <h3>验证结果</h3>
+        <div id="result-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="validate.js"></script>
+</body>
+</html>
