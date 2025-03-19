@@ -1,0 +1,11 @@
+{
+    "layers": [
+        {"type": "conv", "out_channels": 32, "kernel_size": 3, "padding": 1},
+        {"type": "relu"},
+        {"type": "pool", "kernel_size": 2},
+        {"type": "flatten"},
+        {"type": "fc", "out_features": 128},
+        {"type": "relu"},
+        {"type": "fc", "out_features": 10}
+    ]
+}
